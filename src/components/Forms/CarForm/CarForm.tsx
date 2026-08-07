@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Input from './Input'
+import type { Car } from '../../../App'
 
 export interface FormData {
   regNumber: string;
@@ -12,7 +13,7 @@ export interface FormErrors {
 }
 
 interface ParkCarFormProps {
-  handleAddCar: () => void;
+  handleAddCar: (newCar: Car) => void;
 }
 
 const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
@@ -57,9 +58,12 @@ const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (validate()) {
-      console.log('Form data submitted:', formData);
-      handleAddCar();
-      // TODO do stuff
+      const id = Date.now();
+      const car: Car = {
+        ...formData, id
+      }
+      // console.log('Form data submitted:', car);
+      handleAddCar(car);
     }
   };
 
