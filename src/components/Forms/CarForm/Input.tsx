@@ -9,20 +9,22 @@ interface InputProps {
 }
 
 const Input = ({ formData, handleChange, errors, name, ariaLabel }: InputProps) => {
+  const errorId = `${name}-error`;
+
   return (
     <>
       <label
-        htmlFor="regNumber"
+        htmlFor={name}
         style={{ fontWeight: 'bold', fontSize: '0.9rem' }}
       >
-        Registration Number
+        {ariaLabel}
       </label>
 
       <input
         type="text"
         id={name}
         name={name}
-        value={formData.regNumber}
+        value={formData[name]}
         onChange={handleChange}
         aria-label={ariaLabel}
         aria-required="true"
@@ -39,7 +41,7 @@ const Input = ({ formData, handleChange, errors, name, ariaLabel }: InputProps) 
 
       {errors[name] && (
         <span
-          id="regNumber-error"
+          id={errorId}
           role="alert"
           style={{
             color: '#d32f2f',

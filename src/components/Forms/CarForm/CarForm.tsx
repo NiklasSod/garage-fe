@@ -11,7 +11,11 @@ export interface FormErrors {
   brand: string;
 }
 
-const ParkCarForm = () => {
+interface ParkCarFormProps {
+  handleAddCar: () => void;
+}
+
+const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     regNumber: '',
     brand: '',
@@ -54,6 +58,7 @@ const ParkCarForm = () => {
     e.preventDefault();
     if (validate()) {
       console.log('Form data submitted:', formData);
+      handleAddCar();
       // TODO do stuff
     }
   };
