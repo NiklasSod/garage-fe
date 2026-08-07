@@ -63,6 +63,10 @@ const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
         ...formData, id
       }
       // console.log('Form data submitted:', car);
+      setFormData({
+        regNumber: '',
+        brand: '',
+      });
       handleAddCar(car);
     }
   };
