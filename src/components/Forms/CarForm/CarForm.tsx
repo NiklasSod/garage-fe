@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Input from './Input'
-import type { Car } from '../../../App'
+import type { Car } from '../../Garage'
 
 export interface FormData {
   regNumber: string;
