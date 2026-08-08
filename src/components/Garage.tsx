@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ParkCarForm from './Forms/CarForm/CarForm'
+import ParkCarForm from './Form/CarForm/CarForm'
 import styles from './garage.module.css'
 
 export interface Car {
@@ -27,7 +27,7 @@ const Garage = () => {
   }
 
   return (
-    <>
+    <div className={styles.garageContainer}>
       {cars.length > 0 
         ? <h1 className={styles.heading}>Amount of cars in the garage: {cars.length}</h1> 
         : <h1 className={styles.heading}>The garage is empty</h1>
@@ -45,7 +45,7 @@ const Garage = () => {
           <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 8</div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

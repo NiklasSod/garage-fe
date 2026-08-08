@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Input from './Input'
+import SubmitButton from '../../Button/SubmitButton/SubmitButton';
 import type { Car } from '../../Garage'
 import styles from './carForm.module.css'
 
@@ -95,21 +96,7 @@ const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
           ariaLabel="Car brand"
         />
 
-        <button
-          type="submit"
-          style={{
-            padding: '0.75rem 1rem',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            backgroundColor: '#0056b3',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          Park car
-        </button>
+        <SubmitButton text="Park car" />
       </form>
     </div>
   );
