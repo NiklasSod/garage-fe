@@ -1,0 +1,85 @@
+.cardGridContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 10rem;
+  position: relative;
+  padding: 2rem;
+  width: 100%;
+  max-width: 40rem;
+  border: 1px solid black;
+  margin: 1rem;
+}
+
+.cardGrid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 39%;
+  width: 1px;
+  background-color: #2a2a2a;
+  transform: translateX(-50%);
+}
+
+.cardGrid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left:61%;
+  width: 1px;
+  background-color: #2a2a2a;
+  transform: translateX(-50%);
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 1rem;
+  min-height: 100px;
+  border-radius: 2rem;
+  border: 1px solid rgb(248, 248, 248)
+}
+
+@media (max-width: 600px) {
+  .cardGrid {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    gap: 1rem 10rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .cardGrid::before {
+    left: 34%;
+  }
+  .cardGrid::after {
+    left: 66%;
+  }
+}
+
+.dashedTopBottomBorder {
+  background-image: 
+    repeating-linear-gradient(
+      to right,
+      black 0px,
+      black 10px,
+      transparent 10px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      to right,
+      black 0px,
+      black 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  background-position: top, bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+}

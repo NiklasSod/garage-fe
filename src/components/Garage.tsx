@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ParkCarForm from './Forms/CarForm/CarForm'
+import styles from './garage.module.css'
 
 export interface Car {
   id: number;
@@ -29,6 +30,18 @@ const Garage = () => {
     <>
       {cars.length > 0 ? <p>Amount of cars in the garage: {cars.length}</p> : <p>The garage is empty</p>}
       <ParkCarForm handleAddCar={handleAddCar} />
+      <div className={styles.cardGridContainer}>
+        <div className={styles.cardGrid}>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 1</div>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 2</div>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 3</div>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 4</div>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 5</div>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 6</div>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 7</div>
+          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 8</div>
+        </div>
+      </div>
     </>
   )
 }
