@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Input from './Input'
 import type { Car } from '../../Garage'
+import styles from './carForm.module.css'
 
 export interface FormData {
   regNumber: string;
@@ -72,37 +73,27 @@ const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
   };
 
   return (
-    <div>
+    <div className={styles.carFormContainer}>
       <form
         onSubmit={handleSubmit}
         noValidate
-        style={{
-          maxWidth: '400px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.25rem',
-          fontFamily: 'sans-serif',
-        }}
+        className={styles.form}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-          <Input 
-            formData={formData} 
-            handleChange={handleChange} 
-            errors={errors}
-            name="regNumber" 
-            ariaLabel="Registration number"
-          />
-        </div>
+        <Input 
+          formData={formData} 
+          handleChange={handleChange} 
+          errors={errors}
+          name="regNumber" 
+          ariaLabel="Registration number"
+        />
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-          <Input 
-            formData={formData} 
-            handleChange={handleChange} 
-            errors={errors}
-            name="brand" 
-            ariaLabel="Car brand"
-          />
-        </div>
+        <Input 
+          formData={formData} 
+          handleChange={handleChange} 
+          errors={errors}
+          name="brand" 
+          ariaLabel="Car brand"
+        />
 
         <button
           type="submit"

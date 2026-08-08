@@ -1,4 +1,5 @@
 import type { FormData, FormErrors } from "./CarForm"
+import styles from './input.module.css'
 
 interface InputProps {
   formData: FormData;
@@ -12,7 +13,7 @@ const Input = ({ formData, handleChange, errors, name, ariaLabel }: InputProps) 
   const errorId = `${name}-error`;
 
   return (
-    <>
+    <div className={styles.inputWrapper}>
       <label
         htmlFor={name}
         style={{ fontWeight: 'bold', fontSize: '0.9rem' }}
@@ -52,7 +53,7 @@ const Input = ({ formData, handleChange, errors, name, ariaLabel }: InputProps) 
           {errors[name]}
         </span>
       )}
-    </>
+    </div>
   )
 }
 

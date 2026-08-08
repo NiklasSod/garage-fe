@@ -1,3 +1,9 @@
+.heading {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
 .cardGridContainer {
   display: flex;
   width: 100%;
@@ -39,28 +45,11 @@
 }
 
 .card {
-  background: #f9f9f9;
+  background: #bbbbbb;
   padding: 1rem;
   min-height: 100px;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border: 1px solid rgb(248, 248, 248)
-}
-
-@media (max-width: 600px) {
-  .cardGrid {
-    padding: 0.5rem;
-    margin: 0.5rem;
-    gap: 1rem 10rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .cardGrid::before {
-    left: 34%;
-  }
-  .cardGrid::after {
-    left: 66%;
-  }
 }
 
 .dashedTopBottomBorder {
@@ -80,6 +69,23 @@
       transparent 20px
     );
   background-position: top, bottom;
-  background-size: 100% 1px;
+  background-size: 100% 2px;
   background-repeat: no-repeat;
+}
+
+@media (max-width: 600px) {
+  .cardGrid {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    gap: 1rem 10rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .cardGrid::before {
+    left: 34%;
+  }
+  .cardGrid::after {
+    left: 66%;
+  }
 }

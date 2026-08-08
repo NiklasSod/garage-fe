@@ -28,7 +28,10 @@ const Garage = () => {
 
   return (
     <>
-      {cars.length > 0 ? <p>Amount of cars in the garage: {cars.length}</p> : <p>The garage is empty</p>}
+      {cars.length > 0 
+        ? <h1 className={styles.heading}>Amount of cars in the garage: {cars.length}</h1> 
+        : <h1 className={styles.heading}>The garage is empty</h1>
+      }
       <ParkCarForm handleAddCar={handleAddCar} />
       <div className={styles.cardGridContainer}>
         <div className={styles.cardGrid}>

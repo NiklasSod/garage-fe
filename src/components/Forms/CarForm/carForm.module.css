@@ -1,0 +1,14 @@
+.carFormContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: 1.25rem;
+  font-family: sans-serif;
+}
