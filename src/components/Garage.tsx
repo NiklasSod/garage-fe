@@ -35,14 +35,14 @@ const Garage = () => {
       <ParkCarForm handleAddCar={handleAddCar} />
       <div className={styles.cardGridContainer}>
         <div className={styles.cardGrid}>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 1</div>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 2</div>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 3</div>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 4</div>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 5</div>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 6</div>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 7</div>
-          <div className={styles.card + " " + styles.dashedTopBottomBorder}>Car 8</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 1</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 2</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 3</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 4</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 5</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 6</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 7</div>
+          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 8</div>
         </div>
       </div>
     </div>
