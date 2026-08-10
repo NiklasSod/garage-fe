@@ -7,10 +7,10 @@ interface InputProps {
   errors: FormErrors;
   name: keyof FormData;
   ariaLabel: string;
-  isFull: boolean;
+  garageIsFull: boolean;
 }
 
-const Input = ({ formData, handleChange, errors, name, ariaLabel, isFull }: InputProps) => {
+const Input = ({ formData, handleChange, errors, name, ariaLabel, garageIsFull }: InputProps) => {
   const errorId = `${name}-error`;
 
   return (
@@ -32,7 +32,7 @@ const Input = ({ formData, handleChange, errors, name, ariaLabel, isFull }: Inpu
         aria-required="true"
         aria-invalid={!!errors[name]}
         aria-describedby={errors[name] ? `${name}-error` : undefined}
-        disabled={isFull}
+        disabled={garageIsFull}
         style={{
           padding: '0.5rem 0.75rem',
           fontSize: '1rem',

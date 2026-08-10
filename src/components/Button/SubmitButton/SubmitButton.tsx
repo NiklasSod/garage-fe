@@ -2,15 +2,15 @@ import styles from './submitButton.module.css'
 
 interface SubmitButtonProps {
   text: string;
-  isFull: boolean;
+  garageIsFull: boolean;
 }
 
-const SubmitButton = ({ text, isFull }: SubmitButtonProps) => {
+const SubmitButton = ({ text, garageIsFull }: SubmitButtonProps) => {
   return (
     <button
       type="submit"
       className={styles.button}
-      disabled={isFull}
+      disabled={garageIsFull}
     >
       {text}
     </button>

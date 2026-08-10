@@ -12,7 +12,7 @@ const Garage = () => {
 
   const totalSpots = 8;
 
-  const [cars, setCars] = useState<Car[]>([
+  const [cars, setCars] = useState<(Car | null)[]>([
     {
       id: 1,
       regNumber: 'ABC123',
@@ -22,14 +22,36 @@ const Garage = () => {
       id: 2,
       regNumber: 'DEF45G',
       brand: 'Saab'
-    }
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ])
 
-  const isFull = cars.length >= totalSpots;
+  const parkedCarsCount = cars.filter((spot): spot is Car => spot !== null).length;
+  const garageIsFull = parkedCarsCount >= totalSpots;
 
   const handleAddCar = (newCar: Car) => {
-    setCars((prev) => [ ...prev, newCar ])
+    setCars((prev) => {
+      const firstEmptyIndex = prev.findIndex((spot) => spot === null);
+      if (firstEmptyIndex === -1) return prev;
+      
+      const updated = [...prev];
+      updated[firstEmptyIndex] = newCar;
+      return updated;
+    });
   }
+
+  const removeCar = (carToRemove: number) => {
+    setCars((prev) => {
+      const updated = [...prev];
+      updated[carToRemove] = null;
+      return updated;
+    });
+  };
 
   return (
     <div className={styles.garageContainer}>
@@ -39,42 +61,29 @@ const Garage = () => {
       }
       <ParkCarForm 
         handleAddCar={handleAddCar}
-        isFull={isFull}
+        garageIsFull={garageIsFull}
       />
       <div className={styles.cardGridContainer}>
         <div className={styles.cardGrid}>
-          {/* {cars.map((car, i) => {
-            return (
-              <div 
-                className={`${styles.card} ${styles.dashedTopBottomBorder}`}
-              >
-                Car {i + 1}
-              </div>
-            )
-          })}
-           */}
-          {Array.from({ length: totalSpots }).map((_, i) => {
-            const car = cars[i];
-            return (
-              <div 
-                key={car ? car.id : `empty-${i}`}
-                className={`${styles.card} ${styles.dashedTopBottomBorder}`}
-              >
-                {car ? (
-                  <>
-                    <p>Garagespot: {i + 1}</p>
-                    <div>{car.brand}</div>
-                    <small>{car.regNumber}</small>
-                  </>
-                ) : (
-                  <>
-                    <div>Garagespot: {i + 1}</div>
-                    <small>Empty</small>
-                  </>
-                )}
-              </div>
-            )
-          })}
+          {cars.map((car, index) => (
+            <div 
+              key={index}
+              className={`${styles.card} ${styles.dashedTopBottomBorder}`}
+            >
+              {car ? (
+                <>
+                  <div>{car.brand}</div>
+                  <small>{car.regNumber}</small>
+                  <button onClick={() => removeCar(index)}>Take car</button>
+                </>
+              ) : (
+                <>
+                  <div>Parking: {index + 1}</div>
+                  <small>Empty</small>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
