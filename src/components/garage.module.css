@@ -19,10 +19,8 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem 10rem;
   position: relative;
-  padding: 2rem;
   width: 100%;
   max-width: 40rem;
-  border: 1px solid black;
   margin: 1rem;
 }
 
@@ -88,17 +86,14 @@
 
 @media (max-width: 600px) {
   .cardGrid {
-    gap: 1rem 10rem;
+    gap: 1rem 5rem;
     padding: 0;
     margin: 1rem 0 0 0;
   }
-}
-
-@media (max-width: 500px) {
   .cardGrid::before {
-    left: 34%;
+    left: 44%;
   }
   .cardGrid::after {
-    left: 66%;
+    left: 56%;
   }
 }
