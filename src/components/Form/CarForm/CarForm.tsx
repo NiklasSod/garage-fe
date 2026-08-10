@@ -40,23 +40,27 @@ const ParkCarForm = ({handleAddCar, garageIsFull, cars}: ParkCarFormProps) => {
       car => car !== null && car.regNumber === formData.regNumber.trim().toUpperCase()
     );
 
+    if (!formData.brand.trim()) {
+      newErrors.brand = 'Brand is required';
+      isValid = false;
+    }
+
     if (!formData.regNumber.trim()) {
       newErrors.regNumber = 'Regnumber is required';
       isValid = false;
+      setErrors(newErrors);
+      return isValid;
     }
 
     if (!regnumRegex.test(formData.regNumber)) {
       newErrors.regNumber = 'Regnumber is in incorrect format';
       isValid = false;
+      setErrors(newErrors);
+      return isValid;
     }
 
     if (alreadyExists) {
       newErrors.regNumber = 'Regnumber is already in the garage';
-      isValid = false;
-    }
-
-    if (!formData.brand.trim()) {
-      newErrors.brand = 'Brand is required';
       isValid = false;
     }
 
