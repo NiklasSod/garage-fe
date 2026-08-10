@@ -1,8 +1,8 @@
-function App() {
+import Garage from './components/Garage'
+const App = () => {  
+
   return (
-    <>
-      <p>Hej</p>
-    </>
+    <Garage />
   )
 }
 
