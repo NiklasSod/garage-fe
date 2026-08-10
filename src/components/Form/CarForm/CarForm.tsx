@@ -16,9 +16,10 @@ export interface FormErrors {
 
 interface ParkCarFormProps {
   handleAddCar: (newCar: Car) => void;
+  isFull: boolean;
 }
 
-const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
+const ParkCarForm = ({handleAddCar, isFull}: ParkCarFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     regNumber: '',
     brand: '',
@@ -86,6 +87,7 @@ const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
           errors={errors}
           name="regNumber" 
           ariaLabel="Registration number"
+          isFull={isFull}
         />
 
         <Input 
@@ -94,9 +96,13 @@ const ParkCarForm = ({handleAddCar}: ParkCarFormProps) => {
           errors={errors}
           name="brand" 
           ariaLabel="Car brand"
+          isFull={isFull}
         />
 
-        <SubmitButton text="Park car" />
+        <SubmitButton 
+          text={isFull? "Garage is full" : "Park car"} 
+          isFull={isFull}
+        />
       </form>
     </div>
   );

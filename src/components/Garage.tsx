@@ -25,6 +25,8 @@ const Garage = () => {
     }
   ])
 
+  const isFull = cars.length >= totalSpots;
+
   const handleAddCar = (newCar: Car) => {
     setCars((prev) => [ ...prev, newCar ])
   }
@@ -35,7 +37,10 @@ const Garage = () => {
         ? <h1 className={styles.heading}>Amount of cars in the garage: {cars.length}</h1> 
         : <h1 className={styles.heading}>The garage is empty</h1>
       }
-      <ParkCarForm handleAddCar={handleAddCar} />
+      <ParkCarForm 
+        handleAddCar={handleAddCar}
+        isFull={isFull}
+      />
       <div className={styles.cardGridContainer}>
         <div className={styles.cardGrid}>
           {/* {cars.map((car, i) => {
