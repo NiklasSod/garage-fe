@@ -17,9 +17,10 @@ export interface FormErrors {
 interface ParkCarFormProps {
   handleAddCar: (newCar: Car) => void;
   garageIsFull: boolean;
+  cars: (Car | null)[];
 }
 
-const ParkCarForm = ({handleAddCar, garageIsFull}: ParkCarFormProps) => {
+const ParkCarForm = ({handleAddCar, garageIsFull, cars}: ParkCarFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     regNumber: '',
     brand: '',
@@ -35,6 +36,10 @@ const ParkCarForm = ({handleAddCar, garageIsFull}: ParkCarFormProps) => {
     const regnumRegex = /^[A-Z]{3}\d{2}[\dA-Z]$/;
     let isValid = true;
 
+    const alreadyExists = cars.some(
+      car => car !== null && car.regNumber === formData.regNumber.trim().toUpperCase()
+    );
+
     if (!formData.regNumber.trim()) {
       newErrors.regNumber = 'Regnumber is required';
       isValid = false;
@@ -42,6 +47,11 @@ const ParkCarForm = ({handleAddCar, garageIsFull}: ParkCarFormProps) => {
 
     if (!regnumRegex.test(formData.regNumber)) {
       newErrors.regNumber = 'Regnumber is in incorrect format';
+      isValid = false;
+    }
+
+    if (alreadyExists) {
+      newErrors.regNumber = 'Regnumber is already in the garage';
       isValid = false;
     }
 

@@ -76,6 +76,7 @@ const Garage = () => {
       <ParkCarForm 
         handleAddCar={handleAddCar}
         garageIsFull={garageIsFull}
+        cars={cars}
       />
       <div className={styles.cardGridContainer}>
         <div className={styles.cardGrid}>
