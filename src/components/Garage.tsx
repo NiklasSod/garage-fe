@@ -15,17 +15,29 @@ const Garage = () => {
   const [cars, setCars] = useState<(Car | null)[]>([
     {
       id: 1,
-      regNumber: 'ABC123',
+      regNumber: 'BVC823',
       brand: 'Volvo'
     },
     {
       id: 2,
-      regNumber: 'DEF45G',
+      regNumber: 'DHA95G',
       brand: 'Saab'
     },
-    null,
-    null,
-    null,
+    {
+      id: 3,
+      regNumber: 'JKL90J',
+      brand: 'Volkswagen'
+    },
+    {
+      id: 4,
+      regNumber: 'MNO12K',
+      brand: 'BMW'
+    },
+    {
+      id: 5,
+      regNumber: 'PQR34L',
+      brand: 'Audi'
+    },
     null,
     null,
     null
