@@ -32,10 +32,16 @@ const ParkCarForm = ({handleAddCar, garageIsFull}: ParkCarFormProps) => {
 
   const validate = (): boolean => {
     const newErrors: FormErrors = { regNumber: '', brand: '' };
+    const regnumRegex = /^[A-Z]{3}\d{2}[\dA-Z]$/;
     let isValid = true;
 
     if (!formData.regNumber.trim()) {
       newErrors.regNumber = 'Regnumber is required';
+      isValid = false;
+    }
+
+    if (!regnumRegex.test(formData.regNumber)) {
+      newErrors.regNumber = 'Regnumber is in incorrect format';
       isValid = false;
     }
 
@@ -50,7 +56,13 @@ const ParkCarForm = ({handleAddCar, garageIsFull}: ParkCarFormProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    let updatedValue = value;
+    if (name === 'regNumber') {
+      updatedValue = value.toUpperCase();
+    } else if (name === 'brand' && value.length > 0) {
+      updatedValue = value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    setFormData((prev) => ({ ...prev, [name]: updatedValue }));
 
     const fieldName = name as keyof FormErrors;
     if (errors[fieldName]) {
@@ -65,7 +77,6 @@ const ParkCarForm = ({handleAddCar, garageIsFull}: ParkCarFormProps) => {
       const car: Car = {
         ...formData, id
       }
-      // console.log('Form data submitted:', car);
       setFormData({
         regNumber: '',
         brand: '',
