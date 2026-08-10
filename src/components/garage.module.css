@@ -82,11 +82,15 @@
   background-repeat: no-repeat;
 }
 
+.delBtn {
+  padding: 0.2rem 0.4rem;
+}
+
 @media (max-width: 600px) {
   .cardGrid {
     gap: 1rem 10rem;
     padding: 0;
-    margin: 0;
+    margin: 1rem 0 0 0;
   }
 }
 

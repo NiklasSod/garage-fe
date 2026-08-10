@@ -55,9 +55,11 @@ const Garage = () => {
 
   return (
     <div className={styles.garageContainer}>
-      {cars.length > 0 
-        ? <h1 className={styles.heading}>Amount of cars in the garage: {cars.length}</h1> 
-        : <h1 className={styles.heading}>The garage is empty</h1>
+      {garageIsFull 
+        ? <h1 className={styles.heading}>Cars in the garage: {cars.length} (full)</h1> 
+        : parkedCarsCount > 0
+          ? <h1 className={styles.heading}>Cars in the garage: {parkedCarsCount}</h1>
+          : <h1 className={styles.heading}>The garage is empty</h1>
       }
       <ParkCarForm 
         handleAddCar={handleAddCar}
@@ -74,7 +76,12 @@ const Garage = () => {
                 <>
                   <div>{car.brand}</div>
                   <small>{car.regNumber}</small>
-                  <button onClick={() => removeCar(index)}>Take car</button>
+                  <button 
+                    onClick={() => removeCar(index)}
+                    className={styles.delBtn}
+                  >
+                    Take car
+                  </button>
                 </>
               ) : (
                 <>
