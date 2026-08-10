@@ -9,6 +9,9 @@ export interface Car {
 }
 
 const Garage = () => {
+
+  const totalSpots = 8;
+
   const [cars, setCars] = useState<Car[]>([
     {
       id: 1,
@@ -35,14 +38,38 @@ const Garage = () => {
       <ParkCarForm handleAddCar={handleAddCar} />
       <div className={styles.cardGridContainer}>
         <div className={styles.cardGrid}>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 1</div>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 2</div>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 3</div>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 4</div>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 5</div>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 6</div>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 7</div>
-          <div className={`${styles.card} ${styles.dashedTopBottomBorder}`}>Car 8</div>
+          {/* {cars.map((car, i) => {
+            return (
+              <div 
+                className={`${styles.card} ${styles.dashedTopBottomBorder}`}
+              >
+                Car {i + 1}
+              </div>
+            )
+          })}
+           */}
+          {Array.from({ length: totalSpots }).map((_, i) => {
+            const car = cars[i];
+            return (
+              <div 
+                key={car ? car.id : `empty-${i}`}
+                className={`${styles.card} ${styles.dashedTopBottomBorder}`}
+              >
+                {car ? (
+                  <>
+                    <p>Garagespot: {i + 1}</p>
+                    <div>{car.brand}</div>
+                    <small>{car.regNumber}</small>
+                  </>
+                ) : (
+                  <>
+                    <div>Garagespot: {i + 1}</div>
+                    <small>Empty</small>
+                  </>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>
