@@ -76,7 +76,7 @@ const Garage = () => {
   };
 
   return (
-    <div className={styles.garageContainer}>
+    <main className={styles.garageContainer}>
       <div
         role="status"
         aria-live="polite"
@@ -138,7 +138,7 @@ const Garage = () => {
           ))}
         </div>
       </section>
-    </div>
+    </main>
   )
 }
 
