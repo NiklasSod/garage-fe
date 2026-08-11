@@ -12,6 +12,7 @@ const Garage = () => {
 
   const totalSpots = 8;
 
+  const [announcement, setAnnouncement] = useState('');
   const [cars, setCars] = useState<(Car | null)[]>([
     {
       id: 1,
@@ -53,6 +54,9 @@ const Garage = () => {
       
       const updated = [...prev];
       updated[firstEmptyIndex] = newCar;
+      setAnnouncement(
+        `${newCar.brand} with registration ${newCar.regNumber.split('').join(' ')} parked in spot ${firstEmptyIndex + 1}.`
+      );
       return updated;
     });
   }
@@ -60,6 +64,12 @@ const Garage = () => {
   const removeCar = (carToRemove: number) => {
     setCars((prev) => {
       const updated = [...prev];
+      const removedCar = updated[carToRemove];
+      if (removedCar) {
+        setAnnouncement(
+          `${removedCar.brand} with registration ${removedCar.regNumber.split('').join(' ')} removed from spot ${carToRemove + 1}.`
+        );
+      }
       updated[carToRemove] = null;
       return updated;
     });
@@ -67,31 +77,53 @@ const Garage = () => {
 
   return (
     <div className={styles.garageContainer}>
-      {garageIsFull 
-        ? <h1 className={styles.heading}>Cars in the garage: {cars.length} (full)</h1> 
-        : parkedCarsCount > 0
-          ? <h1 className={styles.heading}>Cars in the garage: {parkedCarsCount}</h1>
-          : <h1 className={styles.heading}>The garage is empty</h1>
-      }
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className={styles.srOnly}
+      >
+        {announcement}
+      </div>
+
+      <h1 className={styles.heading} aria-live="polite">
+        {garageIsFull 
+          ? `Cars in the garage: ${parkedCarsCount} of ${totalSpots} (full)`
+          : parkedCarsCount > 0
+            ? `Cars in the garage: ${parkedCarsCount} of ${totalSpots}`
+            : 'The garage is empty'}
+      </h1>
       <ParkCarForm 
         handleAddCar={handleAddCar}
         garageIsFull={garageIsFull}
         cars={cars}
       />
-      <div className={styles.cardGridContainer}>
-        <div className={styles.cardGrid}>
+      <section
+        className={styles.cardGridContainer}
+        aria-label={`Parking spots grid, ${parkedCarsCount} of ${totalSpots} occupied`}
+      >
+        <div className={styles.cardGrid} role="list">
           {cars.map((car, index) => (
             <div 
               key={index}
               className={`${styles.card} ${styles.dashedTopBottomBorder}`}
+              role="listitem"
+              aria-label={
+                car
+                  ? `Spot ${index + 1}: ${car.brand}, ${car.regNumber.split('').join(' ')}`
+                  : `Spot ${index + 1}: empty`
+              }
             >
               {car ? (
                 <>
                   <div>{car.brand}</div>
-                  <small>{car.regNumber}</small>
+                  <small aria-label={`Registration number ${car.regNumber.split('').join(' ')}`}>
+                    {car.regNumber}
+                  </small>
                   <button 
                     onClick={() => removeCar(index)}
                     className={styles.delBtn}
+                    aria-label={`Remove ${car.brand} ${car.regNumber.split('').join(' ')} from spot ${index + 1}`}
                   >
                     Take car
                   </button>
@@ -105,7 +137,7 @@ const Garage = () => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   )
 }

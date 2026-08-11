@@ -105,6 +105,7 @@ const ParkCarForm = ({handleAddCar, garageIsFull, cars}: ParkCarFormProps) => {
         onSubmit={handleSubmit}
         noValidate
         className={styles.form}
+        aria-label="Park a car form"
       >
         <Input 
           formData={formData} 

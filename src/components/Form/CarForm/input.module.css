@@ -3,3 +3,8 @@
   flex-direction: column;
   gap: 0.25rem;
 }
+
+.inputWrapper input:focus-visible {
+  outline: 3px solid #0056b3;
+  outline-offset: 1px;
+}
